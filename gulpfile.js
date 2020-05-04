@@ -64,7 +64,7 @@ function html() {
 
 function js() {
   return src(paths.jsSrc)
-    .pipe(plumber())
+    .pipe(plumber({ errorHandler: notify.onError("Error: <%= error.message %>") }))
     .pipe(uglify())
     .pipe(dest(paths.jsDist))
     .pipe(
